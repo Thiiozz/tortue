@@ -13,6 +13,6 @@ if [ -f ./model.sav ]; then
   rm ./model.sav
 fi
 
-python3 wiki-scrapper.py 10
+python3 wiki-scrapper.py $1
 python3 learn.py
 python3 predict.py

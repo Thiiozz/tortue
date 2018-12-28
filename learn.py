@@ -14,9 +14,9 @@ df = pd.read_csv('dataset.csv', sep=';')
 # Logistic regression
 
 reg_text_clf = Pipeline([
-    ('vect', CountVectorizer(stop_words='english', lowercase=False)),
+    ('vect', CountVectorizer(lowercase=False)),
     ('tfidf', TfidfTransformer()),
-    ('reg', SGDClassifier(learning_rate='optimal', loss='hinge'))
+    ('reg', SGDClassifier())
 ])
 
 reg_text_clf.fit(df.text, df.subject)
