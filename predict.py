@@ -10,7 +10,7 @@ import pickle
 def predict():
     model = pickle.load(open('model.sav', 'rb'))
 
-    to_predict = ["rock des année 70", "homme politique francais de droite"]
+    to_predict = ["rock des année 70", "homme politique francais de droite", "mamifére marin d'asie"]
     predictions = model.predict(to_predict)
 
     i = 0
