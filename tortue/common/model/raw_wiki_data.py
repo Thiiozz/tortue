@@ -1,6 +1,7 @@
 # coding: utf8
 
-import re
+from ..str.str_cleaner import StrCleaner
+
 
 class RawWikiData:
 
@@ -11,10 +12,7 @@ class RawWikiData:
 
     def populate(self, data):
         if data['title'] and data['text']:
-            self.text = self.format_text(data['text'])
-            self.title = self.format_text(data['title'])
-
-    def format_text(self, s):
-        return re.sub(r'\W+', ' ', s).strip().lower()
+            self.text = StrCleaner.remove_non_alphanumeric_chars_trim_and_lower(data['text'])
+            self.title = StrCleaner.remove_non_alphanumeric_chars_trim_and_lower(data['title'])
 
 
