@@ -1,5 +1,6 @@
 # coding: utf8
 
+import re
 
 class RawWikiData:
 
@@ -10,5 +11,10 @@ class RawWikiData:
 
     def populate(self, data):
         if data['title'] and data['text']:
-            self.text = data['text']
-            self.title = data['title']
+            self.text = self.format_text(data['text'])
+            self.title = self.format_text(data['title'])
+
+    def format_text(self, s):
+        return re.sub(r'\W+', ' ', s).strip().lower()
+
+
