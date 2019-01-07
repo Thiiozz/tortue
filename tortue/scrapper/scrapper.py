@@ -4,6 +4,7 @@
 from .wiki_scrapper import WikiScrapper
 from ..common.dao.mongo.raw_data_DAO import RawDataDAO
 from ..common.model.raw_wiki_data import RawWikiData
+from ..common.utils.logger import LOGGER
 
 
 class Scrapper:
@@ -13,7 +14,10 @@ class Scrapper:
 
     def scrap_page_and_save_it_to_mongo(self):
         page_data = self.wiki_scrapper.extract_data_from_random_page()
-        self.dao.insert(self.transform_to_doc(page_data))
+
+        if page_data['title'] and page_data['text']:
+            LOGGER.info("Persisting doc: %s", page_data['title'])
+            self.dao.insert(self.transform_to_doc(page_data))
 
     def transform_to_doc(self, data):
         return RawWikiData(data)
