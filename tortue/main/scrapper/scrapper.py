@@ -1,14 +1,15 @@
 # coding: utf8
 
-
 from tortue.main.scrapper.wiki_scrapper import WikiScrapper
 from tortue.main.common.dao.mongo.raw_data_DAO import RawDataDAO
 from tortue.main.common.model.raw_wiki_data import RawWikiData
 from tortue.main.common.utils.logger import LOGGER
+from tortue.main.scrapper.app_module import inject_dependencies
 
 
 class Scrapper:
     def __init__(self):
+        inject_dependencies()
         self.wiki_scrapper = WikiScrapper()
         self.dao = RawDataDAO()
 
