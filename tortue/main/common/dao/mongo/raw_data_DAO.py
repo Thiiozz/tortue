@@ -1,6 +1,6 @@
 # coding: utf8
 
-from ..mongo.mongo_cli import MongoCli
+from tortue.main.common.dao.mongo.mongo_cli import MongoCli
 
 
 class RawDataDAO:

@@ -1,6 +1,6 @@
 # coding: utf8
 
-from ..scrapper.wiki_scrapper import WikiScrapper
+from tortue.main.scrapper.wiki_scrapper import WikiScrapper
 
 
 def test_can_fetch_a_random_wiki_page():

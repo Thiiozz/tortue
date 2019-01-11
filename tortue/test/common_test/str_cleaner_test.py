@@ -1,6 +1,6 @@
 # coding utf-8
 
-from ..common.str.str_cleaner import StrCleaner
+from tortue.main.common.str.str_cleaner import StrCleaner
 
 
 def test_keep_only_alphanumeric_chars():

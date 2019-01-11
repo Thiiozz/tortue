@@ -1,10 +1,10 @@
 # coding: utf8
 
 
-from .wiki_scrapper import WikiScrapper
-from ..common.dao.mongo.raw_data_DAO import RawDataDAO
-from ..common.model.raw_wiki_data import RawWikiData
-from ..common.utils.logger import LOGGER
+from tortue.main.scrapper.wiki_scrapper import WikiScrapper
+from tortue.main.common.dao.mongo.raw_data_DAO import RawDataDAO
+from tortue.main.common.model.raw_wiki_data import RawWikiData
+from tortue.main.common.utils.logger import LOGGER
 
 
 class Scrapper:

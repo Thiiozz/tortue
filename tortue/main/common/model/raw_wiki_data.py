@@ -1,6 +1,6 @@
 # coding: utf8
 
-from ..str.str_cleaner import StrCleaner
+from tortue.main.common.str.str_cleaner import StrCleaner
 
 
 class RawWikiData:

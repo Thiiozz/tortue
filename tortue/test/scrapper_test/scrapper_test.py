@@ -1,6 +1,6 @@
 # coding: utf8
 
-from ..scrapper.scrapper import Scrapper
+from tortue.main.scrapper.scrapper import Scrapper
 
 s = Scrapper()
 
