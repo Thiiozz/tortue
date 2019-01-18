@@ -6,8 +6,7 @@ import os.path
 from tortue.main.common.pattern.Singleton import Singleton
 
 
-@Singleton
-class Configuration:
+class Configuration(Singleton):
     def __init__(self):
         self.configuration = {}
 

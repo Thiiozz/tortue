@@ -1,20 +1,11 @@
 # coding: utf-8
 
 
-class Singleton:
-    def __init__(self, decorated):
-        self._instance = None
-        self._decorated = decorated
+class Singleton(object):
+    __singleton_instance = None
 
-    def instance(self):
-        try:
-            return self._instance
-        except AttributeError:
-            self._instance = self._decorated()
-            return self._instance
-
-    def __call__(self):
-        raise TypeError('Singletons must be accessed through `instance()`.')
-
-    def __instancecheck__(self, inst):
-        return isinstance(inst, self._decorated)
+    @classmethod
+    def instance(cls):
+        if not cls.__singleton_instance:
+            cls.__singleton_instance = cls()
+        return cls.__singleton_instance

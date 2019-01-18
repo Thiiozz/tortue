@@ -6,11 +6,10 @@ from tortue.main.common.pattern.Singleton import Singleton
 from tortue.main.common.utils.configuration import Configuration
 
 
-@Singleton
-class MongoCli:
+class MongoCli(Singleton):
     def __init__(self):
         self.client = None
-        self.configuration = Configuration.get_instance()
+        self.configuration = Configuration.instance()
 
     def cli(self):
         if self.client is None:
