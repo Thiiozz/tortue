@@ -5,13 +5,32 @@ import re
 
 class StrCleaner:
     @staticmethod
-    def keep_alphanumeric_chars_only(s):
-        return re.sub(r'[^\s\w_]+', '', s)
+    def clean(s) -> str:
+        s = StrCleaner.trim_and_lower(s)
+        s = StrCleaner.keep_alphanumeric_chars_only(s)
+        s = StrCleaner.remove_escaped(s)
+        s = StrCleaner.remove_double_white_space(s)
+
+        return s
 
     @staticmethod
-    def trim_and_lower(s):
+    def trim_and_lower(s) -> str:
         return s.strip().lower()
 
     @staticmethod
-    def remove_non_alphanumeric_chars_trim_and_lower(s):
-        return StrCleaner.trim_and_lower(StrCleaner.keep_alphanumeric_chars_only(s))
+    def keep_alphanumeric_chars_only(s) -> str:
+        return re.sub(r'[^a-zA-Z0-9áàâçéèêëíìîïôöûü\s]+', '', s)
+
+    @staticmethod
+    def remove_escaped(s) -> str:
+        return s \
+            .replace('\n', ' ') \
+            .replace('\r', ' ') \
+            .replace('\t', ' ')
+
+    @staticmethod
+    def remove_double_white_space(s) -> str:
+        while '  ' in s:
+            s = s.replace('  ', ' ')
+
+        return s
