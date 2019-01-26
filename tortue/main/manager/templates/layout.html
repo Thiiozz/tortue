@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Tortue</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <script src="{{ url_for('static', filename='js/lib/jquery.min.js') }}"></script>
+    </head>
+
+    <body id="page-top">
+        <div id="wrapper">
+            <ul class="sidebar navbar-nav">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="head">🐢🐢🐢</h1>
+                        <h6 class="head">made with <3 by Thiiozz</h6>
+                    </div>
+                </div>
+            </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Total number of subjects : <span id="total_number_subjects">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">Subjects pending: <span id="total_pending_subjects">0</span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">Subjects ready: <span id="total_ready_subjects">0</span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Subjects learned: <span id="total_learned_subjects">0</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button class="btn btn-secondary btn-block">Srapping is On</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-success btn-block">Clean data</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-info btn-block">Learn model</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-danger btn-block">Reset index</button>
+                    </div>
+                </div>
+
+                <h3>Test</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="test-input">Your search</label>
+                        <input type="text" class="form-control" id="test-input" placeholder="search for">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search !</button>
+                </form>
+
+                <h4>Results</h4>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Probability</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec mauris at tellus
+                                    semper maximus.
+                                </td>
+                                <td>90%</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec mauris at tellus
+                                    semper maximus.
+                                </td>
+                                <td>90%</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec mauris at tellus
+                                    semper maximus.
+                                </td>
+                                <td>90%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Last subjects</h3>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="subjects" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Content</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Active workers</h3>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="workers" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Last seen</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="{{ url_for('static', filename='js/metrics.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/subjects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/workers.js') }}"></script>
+</html>
