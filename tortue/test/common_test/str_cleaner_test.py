@@ -30,9 +30,29 @@ def test_remove_illegal_char_and_format():
     s = ' ?aB c! '
 
     # When
-    s = StrCleaner.remove_non_alphanumeric_chars_trim_and_lower(s)
+    s = StrCleaner.clean(s)
 
     # Then
     assert s == 'ab c'
 
 
+def test_remove_break_line():
+    # Given
+    s = 'nationalité belge\nelle est'
+
+    # When
+    s = StrCleaner.clean(s)
+
+    # Then
+    assert s == 'nationalité belge elle est'
+
+
+def test_double_white_space():
+    # Given
+    s = 'b    a'
+
+    # When
+    s = StrCleaner.clean(s)
+
+    # Then
+    assert s == 'b a'

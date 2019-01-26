@@ -1,7 +1,13 @@
 import json
 from flask import Flask, render_template
 
+from tortue.main.common.utils.configuration import Configuration
+from tortue.main.common.dao.mongo.scrapper_dao import ScrapperDAO
+from tortue.main.common.dao.mongo.raw_data_DAO import RawDataDAO
+
 app = Flask(__name__)
+
+Configuration.instance().load_from_file("./tortue.json")
 
 
 @app.route("/")
@@ -11,23 +17,24 @@ def home():
 
 @app.route('/metrics')
 def metrics():
+    dao = RawDataDAO()
+
     return '{' \
-           '"total_subjects": 10,' \
-           '"pending_subjects": 7,' \
-           '"ready_subjects": 2,' \
-           '"learned_subjects": 1' \
-           '}'
+           '"total_subjects": %i,' \
+           '"pending_subjects": %i,' \
+           '"ready_subjects": %i,' \
+           '"learned_subjects": %i' \
+           '}' % (
+               dao.count(), dao.count_by_status('PENDING'), dao.count_by_status('READY'), dao.count_by_status('LEARN')
+           )
 
 
 @app.route('/subjects/pending/<number_of_elements_to_fetch>')
 def pending_subjects(number_of_elements_to_fetch):
     data = []
 
-    el = '{"title": "Tiger Nixon", "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec ' \
-         'mauris at tellus semper maximus. Morbi nec mauris at tellus semper maximus max ... "}'
-
-    for _ in range(0, int(number_of_elements_to_fetch)):
-        data.append(el)
+    for s in RawDataDAO().find_n_by_status(number_of_elements_to_fetch, 'PENDING'):
+        data.append(s.to_json())
 
     return json.dumps(data)
 
@@ -36,10 +43,8 @@ def pending_subjects(number_of_elements_to_fetch):
 def workers():
     data = []
 
-    el = '{"id": "ear19a1fvea1981", "last_seen": "01/02/03 10:22:56"}'
-
-    for _ in range(0, 2):
-        data.append(el)
+    for s in ScrapperDAO().find_n_elements(3):
+        data.append(s.to_json())
 
     return json.dumps(data)
 

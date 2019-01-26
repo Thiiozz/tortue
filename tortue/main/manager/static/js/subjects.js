@@ -11,6 +11,6 @@ $( document ).ready(function() {
         });
     }
 
-    setInterval(refreshLastSubjects, 5000);
+    setInterval(refreshLastSubjects, 10000);
     refreshLastSubjects();
 });
