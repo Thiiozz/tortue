@@ -1,5 +1,3 @@
-# coding: utf8
-
 import sys
 
 from tortue.main.scrapper.scrapper import Scrapper

@@ -20,17 +20,12 @@ class Scrapper:
 
     def run(self):
         while True:
-            self.scrap_page_and_save_it_to_mongo()
-            self.scrapper_meta.refresh_last_seen()
+            self.scrap_page_and_save_it()
             self.scrapper_dao.save(self.scrapper_meta)
-            self.scrapper_dao.find_n_elements(3)
 
-    def scrap_page_and_save_it_to_mongo(self):
+    def scrap_page_and_save_it(self):
         page_data = self.wiki_scrapper.extract_data_from_random_page()
 
         if page_data['title'] and page_data['text']:
             LOGGER.info("Persisting doc: %s", page_data['title'])
-            self.raw_data_dao.insert(self.transform_to_doc(page_data))
-
-    def transform_to_doc(self, data):
-        return RawWikiData(data)
+            self.raw_data_dao.insert(RawWikiData(page_data))

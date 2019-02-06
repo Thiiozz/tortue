@@ -7,6 +7,8 @@ class ScrapperDAO:
         self.dao = MongoCli.instance().cli().scrappers
 
     def save(self, scrapper_meta):
+        scrapper_meta.refresh_last_seen()
+
         self.dao.update(
             {'id': scrapper_meta.id},
             {'id': scrapper_meta.id, 'last_seen': scrapper_meta.last_seen},

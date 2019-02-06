@@ -33,7 +33,7 @@ def metrics():
 def pending_subjects(number_of_elements_to_fetch):
     data = []
 
-    for s in RawDataDAO().find_n_by_status(number_of_elements_to_fetch, 'PENDING'):
+    for s in RawDataDAO().find_n_by_status_sorted_by_creation_desc(number_of_elements_to_fetch, 'PENDING'):
         data.append(s.to_json())
 
     return json.dumps(data)

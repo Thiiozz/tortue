@@ -20,4 +20,10 @@ class RawWikiData:
     def to_json(self):
         return '{"title": "%s", "content":"%s"}' % (self.title, self.text[:150])
 
-
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'text': self.text,
+            'status': self.status,
+            'created_at': self.created_at
+        }

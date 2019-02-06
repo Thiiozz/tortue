@@ -13,10 +13,28 @@ class RawDataDAO:
             self.dao.insert_one(
                 {'title': doc.title, 'text': doc.text, 'status': doc.status, 'created_at': doc.created_at})
 
-    def find_n_by_status(self, n, status):
+    def upsert(self, doc):
+        if doc is not None:
+            self.dao.update(
+                {'title': doc['title']},
+                {'title': doc['title'], 'text': doc['text'], 'status': doc['status'], 'created_at': doc['created_at']},
+                upsert=True
+            )
+
+    def find_n_by_status_sorted_by_creation_desc(self, n, status):
+        return self.cursor_to_model_list(
+            self.dao.find({'status': status}).sort([('created_at', pymongo.DESCENDING)]).limit(int(n))
+        )
+
+    def find_n_by_status(self, status):
+        return self.cursor_to_model_list(
+            self.dao.find({'status': status})
+        )
+
+    def cursor_to_model_list(self, cursor):
         data = []
 
-        for doc in self.dao.find({'status': status}).sort([('created_at', pymongo.DESCENDING)]).limit(int(n)):
+        for doc in cursor:
             if doc['title'] and doc['text']:
                 element = RawWikiData(doc)
 

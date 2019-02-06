@@ -5,7 +5,7 @@ $( document ).ready(function() {
             $("#workers tbody tr").remove();
 
             for(var i = 0; i < objs.length; i++) {
-                obj = JSON.parse(objs[i]);
+                obj = objs[i];
                 $("#workers tbody ").append("<tr><td>"+obj.id+"</td><td>"+obj.last_seen+"</td></tr>");
             }
         });
